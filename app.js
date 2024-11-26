@@ -17,10 +17,14 @@ app.use(cors({
 // 미들웨어 설정
 app.use(express.json());  // 요청 본문을 JSON 형태로 파싱
 app.use(session({
-  secret: 'your-secret-key', // 세션 암호화에 사용되는 비밀 키
+  secret: 'secret-key', // 세션 암호화에 사용되는 비밀 키
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false }  // 개발 환경에서는 false로 설정
+  cookie: {  // 개발 환경에서는 false로 설정
+    secure: false, // 개발 환경에서는 false
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000,  // 쿠키의 만료 시간 (24시간)
+  }  
 }));
 
 app.post('/signup', async (req, res) => {
@@ -72,33 +76,41 @@ app.post('/signup', async (req, res) => {
 // 로그인 API
 app.post('/login', async (req, res) => {
   const { userId, userPw } = req.body;
-
+  
   try {
-    // 사용자가 입력한 id로 유저 찾기
     const user = await prisma.user.findUnique({
-      where: { userId: userId },
+      where: { userId },
     });
 
     if (!user) {
-      return res.status(401).json({ error: 'Invalid userId or userPw' });
+      return res.status(401).json({ message: '해당 아이디는 존재하지 않습니다.' });
     }
 
-    // 비밀번호 비교
     const isPasswordValid = await bcrypt.compare(userPw, user.userPw);
 
     if (isPasswordValid) {
-      // 로그인 성공 시, 세션에 사용자 정보 저장
-      req.session.user = { userId: user.userId , userPw: user.userPw};
-
-      res.status(200).json({ message: 'Login successful', user: { userId: user.userId, userPw: user.userPw } });
+      // 세션에 사용자 정보 저장
+      req.session.user = { userId: user.userId };  // 세션에 유저 아이디 저장
+      return res.status(200).json({ userId });
     } else {
-      res.status(401).json({ error: 'Invalid userId or userPw' });
+      return res.status(401).json({ message: '비밀번호를 다시 확인해 주세요.' });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ message: '서버 연결에 문제가 발생했습니다.' });
   }
 });
+
+//로그인 사용자 세션 정보 확인 API
+app.get('/session' , (req, res) => {
+  if (req.session.user) {
+    return res.json({userId : req.session.user.userId});
+  } else {
+    return res.status(401).json({ message: '로그인 상태가 아닙니다.' });
+  }
+})
+
+
 // 모든 user 조회
 app.get('/userList' , async (req , res) => {
   const userList = await prisma.user.findMany()
