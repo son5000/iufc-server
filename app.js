@@ -29,7 +29,6 @@ app.use(session({
 
 app.post('/signup', async (req, res) => {
   const { userId, userPw,  address, userPhoneNumber, favoritPlayer, singleOrMarried, selectedJob , advertisement } = req.body;
-
   try {
     // 중복 검사: 동일한 id가 이미 있는지 확인
     const existingUser = await prisma.user.findUnique({
@@ -40,7 +39,6 @@ app.post('/signup', async (req, res) => {
       where: { userPhoneNumber: userPhoneNumber },
     });
 
-    
     if (existingUser) {
       return res.status(400).json({ error: 'This userId is already taken.' });
     }
@@ -76,7 +74,6 @@ app.post('/signup', async (req, res) => {
 // 로그인 API
 app.post('/login', async (req, res) => {
   const { userId, userPw } = req.body;
-  
   try {
     const user = await prisma.user.findUnique({
       where: { userId },

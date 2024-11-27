@@ -11,4 +11,8 @@ GET http://localhost:5000/userList
 
 GET http://localhost:5000/userList/dog123
 
+###
+
+GET http://localhost:5000/session
+
 
