@@ -16,7 +16,7 @@ datasource db {
 model User {
   userId          String   @id @unique
   userPw          String
-  userPhoneNumber String
+  userPhoneNumber String   @unique
   address         String
   favoritPlayer   String
   selectedJob     String?

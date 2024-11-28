@@ -107,6 +107,24 @@ app.get('/session' , (req, res) => {
   }
 })
 
+// 중복확인 API
+app.get('/duplicatecheck', async (req , res) => {
+  const { userId } = req.query;
+  if(!userId){
+    res.status(400).json({message : '사용자 아이디가 필요합니다.'})
+  }
+  const existence = await prisma.user.findUnique({
+    where : {
+      userId,
+    }
+  })
+  if(existence){
+    res.status(200).json({isAvailable : false , message : '중복되는 아이디입니다. 다른 아이디를 입력하세요.'});
+  }else{
+    res.status(200).json({isAvailable : true , message : '사용 가능한 아이디입니다.'});
+  }
+})
+
 
 // 모든 user 조회
 app.get('/userList' , async (req , res) => {
