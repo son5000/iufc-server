@@ -25,3 +25,20 @@ model User {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
+
+model Post {
+  id        Int      @id @default(autoincrement()) // 자동 증가하는 고유 ID
+  type      PostType
+  title     String
+  views     Int?
+  author    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PostType {
+  notice
+  news
+  cheeringGrounds
+  report
+}

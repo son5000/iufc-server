@@ -30,3 +30,22 @@ export const USERS = [
     advertisement:'agreement'
   },
 ]
+
+export const POST = {
+  announcement: [
+    { type: "notice", title: "인천유나이티드 직원(그라운드 관리) 채용 공고", views: 0 },
+    { type: "notice", title: "인천유나이티드 직원(그라운드 관리) 채용 공고", views: 0 }
+  ],
+  news: [
+    { type: "news", title: "인천유나이티드 직원(그라운드 관리) 채용 공고", views: 0 },
+    { type: "news", title: "인천유나이티드 직원(그라운드 관리) 채용 공고", views: 0 }
+  ],
+  utdReporter: [
+    { type: "report", title: "인천유나이티드 직원(그라운드 관리) 채용 공고", views: 0 },
+    { type: "report", title: "인천유나이티드 직원(그라운드 관리) 채용 공고", views: 0 }
+  ],
+  cheeringGrounds: [
+    { type: "cheeringGrounds", author: "감동이", title: "인천유나이티드 직원(그라운드 관리) 채용 공고", views: 0 },
+    { type: "cheeringGrounds", author: "감동이똥구멍", title: "인천유나이티드 직원(그라운드 관리) 채용 공고", views: 0 }
+  ]
+};

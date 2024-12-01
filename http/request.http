@@ -16,3 +16,8 @@ GET http://localhost:5000/userList/dog123
 GET http://localhost:5000/session
 
 
+###
+
+GET http://localhost:5000/post/notice?offset=0&count=1&type=notice
+
+
