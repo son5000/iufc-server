@@ -3,17 +3,25 @@ import session from 'express-session';
 import cors from 'cors'
 import userRouter from './src/routes/userRoute.js'
 import postRouter from './src/routes/postRoute.js'
+
+import dotenv from 'dotenv'
+
+dotenv.config();
 const app = express();
+
+const PORT = process.env.PORT;
+const FRONTURL = process.env.FRONTEND_URL;
 
 // CORS 설정
 app.use(cors({
-  origin: 'http://localhost:3000', // 프론트엔드 주소 (React 개발 서버)
-  methods: ['GET', 'POST'], // 허용할 HTTP 메서드
+  origin: `${FRONTURL}`, // 프론트엔드 주소 (React 개발 서버)
+  methods: ['GET', 'POST','DELETE','PATCH'], // 허용할 HTTP 메서드
   credentials: true, // 쿠키 전달 허용
 }))
 
 // 미들웨어 설정
 app.use(express.json());  // 요청 본문을 JSON 형태로 파싱
+
 app.use(session({
   secret: 'secret-key', // 세션 암호화에 사용되는 비밀 키
   resave: false,
@@ -25,14 +33,14 @@ app.use(session({
   }  
 }));
 
+// 로킹 미들웨어 모든 요청 로깅
+app.use((req, res, next) => {
+  console.log(`[${req.method}] ${req.url}`); // 요청 메서드와 URL 로깅
+  next(); 
+});
 app.use('/user',userRouter);
-app.use('/post',postRouter)
-
-
-
+app.use('/post',postRouter);
 // 서버 실행
-const PORT = 5000;
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

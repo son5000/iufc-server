@@ -4,20 +4,18 @@ import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient();
 
 // 유저 로그인 
-
 export const userLogin = async (req, res) => {
   const { userId, userPw } = req.body;
   try {
     const user = await prisma.user.findUnique({
       where: { userId },
     });
-
     if (!user) {
       return res.status(401).json({ message: '해당 아이디는 존재하지 않습니다.' });
     }
-
-    const isPasswordValid = await bcrypt.compare(userPw, user.userPw);
     
+    const isPasswordValid = await bcrypt.compare(userPw, user.userPw);
+
     if (isPasswordValid) {
         // 세션에 사용자 정보 저장
         req.session.user = { userId: user.userId };  // 세션에 유저 아이디 저장
@@ -32,7 +30,6 @@ export const userLogin = async (req, res) => {
 };
 
 // 로그아웃 API
-
 export const userLogout = (req, res) => {
   req.session.destroy(  (err) => {
     if (err) {
