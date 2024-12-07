@@ -14,6 +14,7 @@
 
 </aside>
 
+![prismaStudioimg](https://github.com/user-attachments/assets/e15bc652-2248-4e1d-ac7c-2fe33af09f82)
 
 ## 사용기술
 
