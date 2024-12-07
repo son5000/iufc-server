@@ -1,5 +1,20 @@
 # ✔ iufc backend-server
 
+<aside>
+💡
+
+**프로젝트 목표 및 학습 목표**
+- db의 이해
+- front server와 상호작용의 이해
+- 테이블 구조화, Error와 친해지기
+
+**User 와 Post 크게 두가지의 주제를 가지고 front와의 소통을 공부하며 프로젝트를**
+
+**진행하고 있습니다.**
+
+</aside>
+
+
 ## 사용기술
 
 - **node.js**
@@ -13,14 +28,4 @@
 - **bcryptjs**
 - **dev : node-mon , rest-client**
 
----
 
-# 프로젝트 일지 ✔
-
-[cors 설정하기](https://www.notion.so/cors-150b853ac11a80baae84d05d1dd00e78?pvs=21)
-
-[app , route , controller 모듈화](https://www.notion.so/app-route-controller-150b853ac11a802a8077c6c173cc3ac4?pvs=21)
-
-[세션관리 ⇒ 로그인 상태유지 ](https://www.notion.so/150b853ac11a8009a70bd682e4948149?pvs=21)
-
-[게시물 , 게시물 리스트 ⇒ req처리](https://www.notion.so/req-150b853ac11a809a83b0d247819fc04d?pvs=21)
