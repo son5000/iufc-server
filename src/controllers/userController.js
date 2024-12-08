@@ -67,7 +67,7 @@ export const userSignUp =  async (req, res) => {
       }
   
       if (existingPhoneNumber) {
-        return res.status(400).json({ error: 'This phoneNumber is already taken.' });
+        return res.status(400).json({ error: "이 전화번호는 이미 다른 계정에 등록되어 있습니다. 번호를 확인하거나, 새 번호를 입력해 주세요"});
       }
       // 비밀번호 암호화
       const hashedPassword = await bcrypt.hash(userPw, 10);  // 10은 salt rounds

@@ -24,8 +24,8 @@ router.get('/duplicatecheck' , userDuplicatecheck );
 // 관리자 시점.
 
 // 모든 유저 조회 라우터
-router.get('usersAll' , usersAll);
+router.get('/usersAll' , usersAll);
 // 특정 유저 조회 라우터 (id 기반 )
-router.get('userUnique' , userUnique);
+router.get('/userUnique' , userUnique);
 
 export default router;
