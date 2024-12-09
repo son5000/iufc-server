@@ -2,6 +2,16 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+export const PostAll = async (req,res) => {
+  try {
+    const postAlL = await prisma.post.findMany();
+    res.status(200).send(postAlL);
+  }catch(erorr){
+    console.log(error);
+  }
+}
+
+
 // 게시물목록 데이터 제공
 
 export const getPostList = async (req, res) => {
@@ -36,9 +46,9 @@ export const getPostList = async (req, res) => {
 
 // 특정 게시물 데이터 제공
 export const getPost = async (req, res) => {
+  const { id } = req.params;
+  // 요청에서 게시물 ID를 파라미터로 받아옴
   try {
-    // 요청에서 게시물 ID를 파라미터로 받아옴
-    const { id } = req.params;
 
     // 특정 게시물 조회
     const post = await prisma.post.findUnique({
@@ -75,5 +85,34 @@ export const getPost = async (req, res) => {
     return res.status(500).send({ message: '서버 오류가 발생했습니다.' });  // 500 서버 오류 응답
   }
 };
+
+// user => cheeringGrounds 게시글 작성
+export const postWrite = async (req,res) => {
+  // req.body에서 프론트에서 보낸 데이터 추출.
+  const { title , content } = req.body;
+  // req.session 에서 현재 로그인된 유저의 아이디 값 추출.
+  const author = req.session.user.userId;
+  // 로그인 상태가 아니라면 return.
+  if(!author){
+    return res.status(401).json({error : '로그인이 필요합니다.'});
+  }
+  // db테이블에 등록.
+  try {
+    const newPost = await prisma.post.create({
+      data : {
+        type : 'cheeringGrounds',
+        title,
+        content,
+        author,
+        views : 0
+      }
+    })
+    res.status(201).json(newPost);
+  } catch (error) {
+    console.log(error)
+      res.status(500).json({error : '에러가 발생했습니다.'})
+    }
+}
+
 
   

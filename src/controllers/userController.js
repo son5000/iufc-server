@@ -19,6 +19,7 @@ export const userLogin = async (req, res) => {
     if (isPasswordValid) {
         // 세션에 사용자 정보 저장
         req.session.user = { userId: user.userId };  // 세션에 유저 아이디 저장
+        console.log(req.session);
         return res.status(200).json({ userId });
     } else {
         return res.status(401).json({ message: '비밀번호를 다시 확인해 주세요.' });
@@ -63,7 +64,7 @@ export const userSignUp =  async (req, res) => {
       });
   
       if (existingUser) {
-        return res.status(400).json({ error: 'This userId is already taken.' });
+        return res.status(400).json({ error: '중복되는 아이디입니다..' });
       }
   
       if (existingPhoneNumber) {
@@ -72,7 +73,7 @@ export const userSignUp =  async (req, res) => {
       // 비밀번호 암호화
       const hashedPassword = await bcrypt.hash(userPw, 10);  // 10은 salt rounds
   
-      // 중복이 없으면 새 유저 생성
+      // 중복이 없으면 새 유저 생성ㄴ
       const newUser = await prisma.user.create({
         data: {
           userId, 
@@ -90,7 +91,7 @@ export const userSignUp =  async (req, res) => {
   
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: 'Error creating user' });
+      res.status(500).json({ error: '에러가 발생했습니다.' });
     }
   };
   
