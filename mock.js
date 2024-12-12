@@ -209,3 +209,10 @@ export const POST = {
     { type: "cheeringGrounds", author: "감동이똥구멍", title: "인천유나이티드 직원(그라운드 관리) 채용 공고", views: 80 }
   ]
 };
+
+
+export const ADMIN = [
+  { adminId : 'sonhanje',
+    adminPw : '123123123a@'
+  }
+]

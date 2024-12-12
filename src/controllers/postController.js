@@ -4,9 +4,9 @@ const prisma = new PrismaClient();
 
 export const PostAll = async (req,res) => {
   try {
-    const postAlL = await prisma.post.findMany();
-    res.status(200).send(postAlL);
-  }catch(erorr){
+    const posts = await prisma.post.findMany();
+    res.status(200).send(posts);
+  }catch(error){
     console.log(error);
   }
 }

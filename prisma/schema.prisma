@@ -26,6 +26,11 @@ model User {
   updatedAt       DateTime @updatedAt
 }
 
+model Admin {
+  adminId String @id @unique
+  adminPw String
+}
+
 model Post {
   id        Int      @id @default(autoincrement()) // 자동 증가하는 고유 ID
   type      PostType

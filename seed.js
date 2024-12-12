@@ -1,20 +1,35 @@
-import { PrismaClient  , Prisma } from '@prisma/client';
-import { USERS, POST} from './mock.js';
-
+import { PrismaClient } from '@prisma/client';
+import { USERS, POST, ADMIN } from './mock.js';
+import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient();
 
-const ppost = POST;
-console.log(ppost);
-
+async function hashPassword(pw) {
+  const saltRounds= 10;
+  return bcrypt.hash(pw,saltRounds);
+}
 
 async function main() {
   // 기존 데이터 삭제
   await prisma.user.deleteMany();
+  await prisma.post.deleteMany();
+  await prisma.admin.deleteMany();
 
   // user 목 데이터 삽입
   await Promise.all(
     USERS.map(async (user) => {
-      await prisma.user.create({ data: user });
+      const hashedPassword = await hashPassword(user.userPw)
+      await prisma.user.create({
+        data: {
+          userId: user.userId,
+          userPw: hashedPassword,  // 해시된 비밀번호를 저장
+          userPhoneNumber: user.userPhoneNumber,
+          address: user.address,
+          favoritPlayer: user.favoritPlayer,
+          selectedJob: user.selectedJob,
+          singleOrMarried: user.singleOrMarried,
+          advertisement: user.advertisement,
+        },
+      });
     })
   );
   // post 목 데이터 삽입
@@ -37,6 +52,18 @@ async function main() {
       );
     })
   );
+
+  await Promise.all(
+    ADMIN.map( async(admin) => {
+      const hashedPassword = await hashPassword(admin.adminPw)
+      await prisma.admin.create({
+        data:{
+          adminId : admin.adminId,
+          adminPw : hashedPassword
+        }
+      })
+    })
+  )
 }
 
 main()
