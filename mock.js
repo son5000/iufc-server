@@ -1,35 +1,207 @@
-export const USERS = [
+export const USERS = 
+ [
   {
-    userId: '손감동손가락123',
-    userPw: '123123123a@',
-    userPhoneNumber: '010-1234-1234',
-    address: '우주어딘가',
-    favoritPlayer: '손흥민',
-    selectedJob: '백수',
-    singleOrMarried:'single',
-    advertisement:'agreement'
+    userId: "user1234",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-1234-5678",
+    address: "서울 어딘가",
+    favoritPlayer: "최승구",
+    selectedJob: "회사원(사무직/연구직)",
+    singleOrMarried: "single",
+    advertisement: "agreement"
   },
   {
-    userId: '감동이발가락123',
-    userPw: '123123123a@',
-    userPhoneNumber: '010-5555-1234',
-    address: '우주어딘가',
-    favoritPlayer: '박지성',
-    selectedJob: '백수',
-    singleOrMarried:'single',
-    advertisement:'agreement'
+    userId: "user5678",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-2345-6189",
+    address: "부산 어딘가",
+    favoritPlayer: "최우진",
+    selectedJob: "대학생(대학원생 포함)",
+    singleOrMarried: "married",
+    advertisement: "disagreement"
   },
   {
-    userId: '똥개엉덩이1234',
-    userPw: '123123123a@',
-    userPhoneNumber: '010-7777-1234',
-    address: '우주어딘가',
-    favoritPlayer: '손흥민',
-    selectedJob: '백수',
-    singleOrMarried:'single',
-    advertisement:'agreement'
+    userId: "user9012",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-3456-7800",
+    address: "인천 어딘가",
+    favoritPlayer: "김현서",
+    selectedJob: "프리랜서",
+    singleOrMarried: "single",
+    advertisement: "agreement"
   },
+  {
+    userId: "user3456",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-4567-8801",
+    address: "광주 어딘가",
+    favoritPlayer: "박진홍",
+    selectedJob: "서비스업 종사자",
+    singleOrMarried: "married",
+    advertisement: "disagreement"
+  },
+  {
+    userId: "user7890",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-5678-9712",
+    address: "대구 어딘가",
+    favoritPlayer: "음포쿠",
+    selectedJob: "공무원",
+    singleOrMarried: "single",
+    advertisement: "agreement"
+  },
+  {
+    userId: "user6789",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-6789-0122",
+    address: "울산 어딘가",
+    favoritPlayer: "송시우",
+    selectedJob: "회사원(제조/건설/기술직)",
+    singleOrMarried: "married",
+    advertisement: "disagreement"
+  },
+  {
+    userId: "user432",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-7890-1204",
+    address: "제주 어딘가",
+    favoritPlayer: "백민규",
+    selectedJob: "전업주부",
+    singleOrMarried: "single",
+    advertisement: "agreement"
+  },
+  {
+    userId: "user765",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-8201-2345",
+    address: "대전 어딘가",
+    favoritPlayer: "지언학",
+    selectedJob: "법률 종사자",
+    singleOrMarried: "married",
+    advertisement: "agreement"
+  },
+  {
+    userId: "user3422",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-9052-3456",
+    address: "강릉 어딘가",
+    favoritPlayer: "김민석",
+    selectedJob: "자영업자",
+    singleOrMarried: "single",
+    advertisement: "disagreement"
+  },
+  {
+    userId: "user793",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-0173-4567",
+    address: "포항 어딘가",
+    favoritPlayer: "무고사",
+    selectedJob: "학생(초/중/고)",
+    singleOrMarried: "married",
+    advertisement: "agreement"
+  },
+  {
+    userId: "user134",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-1234-5670",
+    address: "서울 어딘가",
+    favoritPlayer: "무고사",
+    selectedJob: "회사원(사무직/연구직)",
+    singleOrMarried: "single",
+    advertisement: "agreement"
+  },
+  {
+    userId: "user6788",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-2345-6789",
+    address: "부산 어딘가",
+    favoritPlayer: "음포쿠",
+    selectedJob: "대학생(대학원생 포함)",
+    singleOrMarried: "married",
+    advertisement: "disagreement"
+  },
+  {
+    userId: "user012",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-3456-7890",
+    address: "부산 어딘가",
+    favoritPlayer: "김현서",
+    selectedJob: "프리랜서",
+    singleOrMarried: "single",
+    advertisement: "agreement"
+  },
+  {
+    userId: "user356",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-4567-8901",
+    address: "광주 어딘가",
+    favoritPlayer: "김현서",
+    selectedJob: "서비스업 종사자",
+    singleOrMarried: "married",
+    advertisement: "disagreement"
+  },
+  {
+    userId: "user780",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-5678-9012",
+    address: "서울 어딘가",
+    favoritPlayer: "음포쿠",
+    selectedJob: "공무원",
+    singleOrMarried: "single",
+    advertisement: "agreement"
+  },
+  {
+    userId: "user689",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-6789-0123",
+    address: "울산 어딘가",
+    favoritPlayer: "송시우",
+    selectedJob: "회사원(제조/건설/기술직)",
+    singleOrMarried: "married",
+    advertisement: "disagreement"
+  },
+  {
+    userId: "user431",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-7890-1234",
+    address: "제주 어딘가",
+    favoritPlayer: "송시우",
+    selectedJob: "전업주부",
+    singleOrMarried: "single",
+    advertisement: "agreement"
+  },
+  {
+    userId: "user875",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-8901-2345",
+    address: "서울 어딘가",
+    favoritPlayer: "지언학",
+    selectedJob: "법률 종사자",
+    singleOrMarried: "married",
+    advertisement: "agreement"
+  },
+  {
+    userId: "user341f2",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-9012-3456",
+    address: "강릉 어딘가",
+    favoritPlayer: "김민석",
+    selectedJob: "자영업자",
+    singleOrMarried: "single",
+    advertisement: "disagreement"
+  },
+  {
+    userId: "user783",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-0123-4567",
+    address: "포항 어딘가",
+    favoritPlayer: "최우진",
+    selectedJob: "학생(초/중/고)",
+    singleOrMarried: "married",
+    advertisement: "agreement"
+  }
 ]
+
 
 export const POST = {
   announcement: [

@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient();
 
-// 관리자 로그인 
+// 로그인 
 export const adminLogin = async (req, res) => {
     const { adminId, adminPw } = req.body;
     console.log(req.body);
@@ -29,8 +29,10 @@ export const adminLogin = async (req, res) => {
             return res.status(500).json({ message: '서버 연결에 문제가 발생했습니다.' });
         }
   };
+  
 
-  export const usersData = async (req,res) => {
+// mainPage 데이터 송신
+export const usersData = async (req,res) => {
     try{
         const usersData = await prisma.user.findMany({select: {
             favoritPlayer : true,
@@ -48,4 +50,15 @@ export const adminLogin = async (req, res) => {
         res.status(404).send({message : error.message})
     }
 
-  }
+}
+
+
+// 로그아웃 API
+export const adminLogout = (req, res) => {
+  req.session.destroy(  (err) => {
+    if (err) {
+      return  res.status(500).json({ error: 'Failed to logout' });
+    }
+     res.status(200).json({ message: 'Logout successful' });
+  });
+};

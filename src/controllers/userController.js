@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs'
 
 const prisma = new PrismaClient();
 
-// 유저 로그인 
+// 로그인 
 export const userLogin = async (req, res) => {
   const { userId, userPw } = req.body;
   try {
@@ -49,7 +49,7 @@ export const userSession =  (req, res) => {
   }
 }
 
-// 유저 회원가입 
+// 회원가입 
 
 export const userSignUp =  async (req, res) => {
     const { userId, userPw,  address, userPhoneNumber, favoritPlayer, singleOrMarried, selectedJob , advertisement } = req.body;
@@ -126,7 +126,7 @@ export const userDuplicatecheck = async (req, res) => {
     res.send(userList);
   };
   
-  // 특정 user(id) 조회
+  // 특정 id 조회
 
   export const userUnique = async (req , res) => {
     const { id } = req.params;
