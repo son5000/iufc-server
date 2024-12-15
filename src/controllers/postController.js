@@ -86,33 +86,31 @@ export const getPost = async (req, res) => {
   }
 };
 
-// user => cheeringGrounds 게시글 작성
-export const postWrite = async (req,res) => {
-  // req.body에서 프론트에서 보낸 데이터 추출.
-  const { title , content } = req.body;
-  // req.session 에서 현재 로그인된 유저의 아이디 값 추출.
-  const author = req.session.user.userId;
-  // 로그인 상태가 아니라면 return.
-  if(!author){
-    return res.status(401).json({error : '로그인이 필요합니다.'});
+// 로그인 상태 체크 및 게시글 작성
+export const postWrite = async (req, res) => {
+  const { title, content } = req.body;
+  const author = req.session.user?.userId; // 안전하게 로그인 여부 확인
+  console.log(req.session);
+
+  if (!author) {
+    return res.status(401).json({ error: '로그인이 필요합니다.' });
   }
-  // db테이블에 등록.
   try {
     const newPost = await prisma.post.create({
-      data : {
-        type : 'cheeringGrounds',
+      data: {
+        type: 'cheeringGrounds',
         title,
         content,
         author,
-        views : 0
+        views: 0
       }
-    })
+    });
     res.status(201).json(newPost);
   } catch (error) {
-    console.log(error)
-      res.status(500).json({error : '에러가 발생했습니다.'})
-    }
-}
+    console.error(error);
+    res.status(500).json({ error: '서버 오류가 발생했습니다.' });
+  }
+};
 
 
   

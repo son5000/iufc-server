@@ -55,10 +55,40 @@ export const usersData = async (req,res) => {
 
 // 로그아웃 API
 export const adminLogout = (req, res) => {
-  req.session.destroy(  (err) => {
+  req.session.destroy((err) => {
     if (err) {
       return  res.status(500).json({ error: 'Failed to logout' });
     }
      res.status(200).json({ message: 'Logout successful' });
   });
 };
+
+  // 모든 user 조회
+
+  export const usersAll =  async (req , res) => {
+    const userList = await prisma.user.findMany()
+    res.send(userList);
+  };
+
+  // 특정 user 조회
+  
+  export const userUnique = async (req, res) => {
+    try {
+      const { userId } = req.body; 
+      if (!userId) {
+        return res.status(400).json({ message: 'User ID가 필요합니다.' });
+      }
+      console.log(`조회할 유저 ID: ${userId}`);
+      const user = await prisma.user.findUnique({
+        where: { userId }, 
+      });
+      if (!user) {
+        return res.status(404).json({ message: '해당 유저를 찾을 수 없습니다.' });
+      }
+      res.status(200).json(user);
+    } catch (error) {
+      console.error('유저 조회 오류:', error);
+      res.status(500).json({ message: '서버에 오류가 발생했습니다.' });
+    }
+  };
+  

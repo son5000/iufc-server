@@ -119,23 +119,5 @@ export const userDuplicatecheck = async (req, res) => {
   };
   
   
-  // 모든 user 조회
-
-  export const usersAll =  async (req , res) => {
-    const userList = await prisma.user.findMany()
-    res.send(userList);
-  };
-  
-  // 특정 id 조회
-
-  export const userUnique = async (req , res) => {
-    const { id } = req.params;
-    console.log(id)
-    const user = await prisma.user.findUnique({
-      where : { userId : id}
-    })
-    res.send(user);
-  };
-  
   
   

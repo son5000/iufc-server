@@ -28,7 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {  // 개발 환경에서는 false로 설정
-    secure: false, // 개발 환경에서는 false
+    secure: true, // 개발 환경에서는 false
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000,  // 쿠키의 만료 시간 (24시간)
   }  
@@ -45,6 +45,6 @@ app.use('/post',postRouter);
 app.use('/admin',adminRouter);
 
 // 서버 실행
-app.listen(PORT,'0.0.0.0', () => {
+app.listen(PORT,() => {
   console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
