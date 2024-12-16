@@ -10,9 +10,9 @@
 
 **프로젝트 기여도** : 100%
 
-**프로젝트 간단 요약** :학습에온 지식들을 종합적으로 활용하여 프론트 서버 구축 netlify 를 통한 배포      
+**프로젝트 간단 요약** :학습에온 지식들을 종합적으로 활용하여 백엔드서버 구축 AWS 를 통한 배포 및
 
-및 백엔드 서버를 구축하여 AWS 를 통한 배포 및 프론트 서버와의 호환.
+    **프론트엔드 개발자와 백엔드 개발자의 상관 관계를 이해하고자 합니다.**
 
 **주요 사용기술** :  Node.js , Express , Express-session , Express-Router , Rest API , PostgeSQL , Prisma 
               / dev : node-mon , rest-client
