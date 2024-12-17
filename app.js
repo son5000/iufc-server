@@ -28,7 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {  // 개발 환경에서는 false로 설정
-    secure: true, // 개발 환경에서는 false
+    secure: false, // 개발 환경에서는 false
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000,  // 쿠키의 만료 시간 (24시간)
   }  
@@ -38,6 +38,10 @@ app.use(session({
 app.use((req, res, next) => {
   console.log(`[${req.method}] ${req.url}`); // 요청 메서드와 URL 로깅
   next(); 
+});
+
+app.get('/healthz', (req, res) => {
+  res.status(200).send('OK');
 });
 
 app.use('/user',userRouter);
