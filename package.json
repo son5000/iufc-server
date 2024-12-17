@@ -19,6 +19,6 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "seed": "node seed.js",
-    "generate": "npx prisma generate"
+    "generate": "node node_modules/prisma/build/index.js generate"
   }
 }
