@@ -16,6 +16,6 @@
     "dev": "nodemon app.js",
     "start": "node app.js",
     "seed": "node seed.js",
-    "generate": "node_modules/.bin/prisma generate"
+    "generate": "chmod +x node_modules/.bin/prisma && node_modules/.bin/prisma generate"
   }
 }
