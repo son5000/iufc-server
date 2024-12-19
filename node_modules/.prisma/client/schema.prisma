@@ -48,3 +48,26 @@ enum PostType {
   cheeringGrounds
   report
 }
+
+model Player {
+  id          Int        @id @default(autoincrement())
+  type        PlayerType
+  backNumber  String?
+  name        String
+  englishName String?
+  currentTeam String?
+  position    Position?
+}
+
+enum PlayerType {
+  선수
+  군입대
+  우선지명
+}
+
+enum Position {
+  골키퍼
+  수비수
+  미드필더
+  공격수
+}

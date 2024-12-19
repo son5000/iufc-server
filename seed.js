@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { USERS, POST, ADMIN } from './mock.js';
+import { USERS, POST, ADMIN , PLAYERS } from './mock.js';
 import bcrypt from 'bcryptjs'
 const prisma = new PrismaClient();
 
@@ -13,6 +13,8 @@ async function main() {
   await prisma.user.deleteMany();
   await prisma.post.deleteMany();
   await prisma.admin.deleteMany();
+  await prisma.player.deleteMany();
+
 
   // user 목 데이터 삽입
   await Promise.all(
@@ -37,12 +39,11 @@ async function main() {
     Object.values(POST).map(async (category) => {
       await Promise.all(
         category.map(async (post) => {
-          // 'author'가 없는 경우는 기본값으로 null 처리
           const postData = {
             type: post.type, // 수정된 type 값 사용
             title: post.title,
             views: post.views,
-            author: post.author || null, // author 필드가 없으면 null로 설정
+            author: post.author , 
           };
           // 데이터 삽입
           await prisma.post.create({
@@ -65,6 +66,23 @@ async function main() {
     })
   )
 }
+
+await Promise.all(
+  PLAYERS.map(async (player) => {
+    await prisma.player.create({
+      data: {
+        type: player.type,
+        backNumber: player.backNumber,
+        name: player.name,
+        englishName: player.englishName,
+        currentTeam: player.currentTeam,
+        position: player.position,
+      },
+    });
+  })
+);
+
+
 
 main()
   .then(async () => {

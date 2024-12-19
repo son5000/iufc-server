@@ -74,13 +74,13 @@ export const adminLogout = (req, res) => {
   
   export const userUnique = async (req, res) => {
     try {
-      const { userId } = req.body; 
-      if (!userId) {
+      const { playerId } = req.body; 
+      if (!playerId) {
         return res.status(400).json({ message: 'User ID가 필요합니다.' });
       }
-      console.log(`조회할 유저 ID: ${userId}`);
+      console.log(`조회할 유저 ID: ${playerId}`);
       const user = await prisma.user.findUnique({
-        where: { userId }, 
+        where: { playerId }, 
       });
       if (!user) {
         return res.status(404).json({ message: '해당 유저를 찾을 수 없습니다.' });
@@ -91,4 +91,40 @@ export const adminLogout = (req, res) => {
       res.status(500).json({ message: '서버에 오류가 발생했습니다.' });
     }
   };
+
+  export const playerData = async (req,res) => {
+    try { 
+      const players = await prisma.player.findMany();
+      console.log(players)
+      if(players.length === 0){
+       return res.status(401).send({message : '조회된 데이터가 없습니다.'})
+      }
+      return res.status(200).send(players);
+    } catch (error) {
+      return res.status(500).json({ message: '서버에 오류가 발생했습니다.' });
+    }
+  };
+
+  export const playerUnique = async (req, res) => {
+    try {
+      const { name } = req.body; 
+      if (!name) {
+        return res.status(400).json({ message: '선수이름이 필요합니다.' });
+      }
+      console.log(`조회할 선수 이름: ${name}`);
+      const player = await prisma.player.findUnique({
+        where: { name }, 
+      });
+      if (!player) {
+        return res.status(404).json({ message: '해당 선수를 찾을 수 없습니다.' });
+      }
+      res.status(200).json(player);
+    } catch (error) {
+      console.error('선수 조회 오류:', error);
+      res.status(500).json({ message: '서버에 오류가 발생했습니다.' });
+    }
+  };
+
+
+
   
