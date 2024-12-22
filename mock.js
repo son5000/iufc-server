@@ -7,8 +7,8 @@ export const USERS =
     address: "서울 어딘가",
     favoritPlayer: "최승구",
     selectedJob: "회사원(사무직/연구직)",
-    singleOrMarried: "single",
-    advertisement: "agreement"
+    singleOrMarried: "N",
+    advertisement: "Y"
   },
   {
     userId: "user5678",
@@ -17,8 +17,8 @@ export const USERS =
     address: "부산 어딘가",
     favoritPlayer: "최우진",
     selectedJob: "대학생(대학원생 포함)",
-    singleOrMarried: "married",
-    advertisement: "disagreement"
+    singleOrMarried: "Y",
+    advertisement: "N"
   },
   {
     userId: "user9012",
@@ -27,8 +27,8 @@ export const USERS =
     address: "인천 어딘가",
     favoritPlayer: "김현서",
     selectedJob: "프리랜서",
-    singleOrMarried: "single",
-    advertisement: "agreement"
+    singleOrMarried: "N",
+    advertisement: "Y"
   },
   {
     userId: "user3456",
@@ -37,8 +37,8 @@ export const USERS =
     address: "광주 어딘가",
     favoritPlayer: "박진홍",
     selectedJob: "서비스업 종사자",
-    singleOrMarried: "married",
-    advertisement: "disagreement"
+    singleOrMarried: "Y",
+    advertisement: "N"
   },
   {
     userId: "user7890",
@@ -47,8 +47,8 @@ export const USERS =
     address: "대구 어딘가",
     favoritPlayer: "음포쿠",
     selectedJob: "공무원",
-    singleOrMarried: "single",
-    advertisement: "agreement"
+    singleOrMarried: "N",
+    advertisement: "Y"
   },
   {
     userId: "user6789",
@@ -57,8 +57,8 @@ export const USERS =
     address: "울산 어딘가",
     favoritPlayer: "송시우",
     selectedJob: "회사원(제조/건설/기술직)",
-    singleOrMarried: "married",
-    advertisement: "disagreement"
+    singleOrMarried: "Y",
+    advertisement: "N"
   },
   {
     userId: "user432",
@@ -67,8 +67,8 @@ export const USERS =
     address: "제주 어딘가",
     favoritPlayer: "백민규",
     selectedJob: "전업주부",
-    singleOrMarried: "single",
-    advertisement: "agreement"
+    singleOrMarried: "N",
+    advertisement: "Y"
   },
   {
     userId: "user765",
@@ -77,8 +77,8 @@ export const USERS =
     address: "대전 어딘가",
     favoritPlayer: "지언학",
     selectedJob: "법률 종사자",
-    singleOrMarried: "married",
-    advertisement: "agreement"
+    singleOrMarried: "Y",
+    advertisement: "Y"
   },
   {
     userId: "user3422",
@@ -87,8 +87,8 @@ export const USERS =
     address: "강릉 어딘가",
     favoritPlayer: "김민석",
     selectedJob: "자영업자",
-    singleOrMarried: "single",
-    advertisement: "disagreement"
+    singleOrMarried: "N",
+    advertisement: "N"
   },
   {
     userId: "user793",
@@ -97,8 +97,8 @@ export const USERS =
     address: "포항 어딘가",
     favoritPlayer: "무고사",
     selectedJob: "학생(초/중/고)",
-    singleOrMarried: "married",
-    advertisement: "agreement"
+    singleOrMarried: "Y",
+    advertisement: "Y"
   },
   {
     userId: "user134",
@@ -107,8 +107,8 @@ export const USERS =
     address: "서울 어딘가",
     favoritPlayer: "무고사",
     selectedJob: "회사원(사무직/연구직)",
-    singleOrMarried: "single",
-    advertisement: "agreement"
+    singleOrMarried: "N",
+    advertisement: "Y"
   },
   {
     userId: "user6788",
@@ -117,8 +117,8 @@ export const USERS =
     address: "부산 어딘가",
     favoritPlayer: "음포쿠",
     selectedJob: "대학생(대학원생 포함)",
-    singleOrMarried: "married",
-    advertisement: "disagreement"
+    singleOrMarried: "Y",
+    advertisement: "N"
   },
   {
     userId: "user012",
@@ -127,8 +127,8 @@ export const USERS =
     address: "부산 어딘가",
     favoritPlayer: "김현서",
     selectedJob: "프리랜서",
-    singleOrMarried: "single",
-    advertisement: "agreement"
+    singleOrMarried: "N",
+    advertisement: "Y"
   },
   {
     userId: "user356",
@@ -137,8 +137,8 @@ export const USERS =
     address: "광주 어딘가",
     favoritPlayer: "김현서",
     selectedJob: "서비스업 종사자",
-    singleOrMarried: "married",
-    advertisement: "disagreement"
+    singleOrMarried: "Y",
+    advertisement: "N"
   },
   {
     userId: "user780",
@@ -147,8 +147,8 @@ export const USERS =
     address: "서울 어딘가",
     favoritPlayer: "음포쿠",
     selectedJob: "공무원",
-    singleOrMarried: "single",
-    advertisement: "agreement"
+    singleOrMarried: "N",
+    advertisement: "Y"
   },
   {
     userId: "user689",
@@ -157,8 +157,8 @@ export const USERS =
     address: "울산 어딘가",
     favoritPlayer: "송시우",
     selectedJob: "회사원(제조/건설/기술직)",
-    singleOrMarried: "married",
-    advertisement: "disagreement"
+    singleOrMarried: "Y",
+    advertisement: "N"
   },
   {
     userId: "user431",
@@ -167,8 +167,8 @@ export const USERS =
     address: "제주 어딘가",
     favoritPlayer: "송시우",
     selectedJob: "전업주부",
-    singleOrMarried: "single",
-    advertisement: "agreement"
+    singleOrMarried: "N",
+    advertisement: "Y"
   },
   {
     userId: "user875",
@@ -177,8 +177,8 @@ export const USERS =
     address: "서울 어딘가",
     favoritPlayer: "지언학",
     selectedJob: "법률 종사자",
-    singleOrMarried: "married",
-    advertisement: "agreement"
+    singleOrMarried: "Y",
+    advertisement: "Y"
   },
   {
     userId: "user341f2",
@@ -187,8 +187,8 @@ export const USERS =
     address: "강릉 어딘가",
     favoritPlayer: "김민석",
     selectedJob: "자영업자",
-    singleOrMarried: "single",
-    advertisement: "disagreement"
+    singleOrMarried: "N",
+    advertisement: "N"
   },
   {
     userId: "user783",
@@ -197,8 +197,18 @@ export const USERS =
     address: "포항 어딘가",
     favoritPlayer: "최우진",
     selectedJob: "학생(초/중/고)",
-    singleOrMarried: "married",
-    advertisement: "agreement"
+    singleOrMarried: "Y",
+    advertisement: "Y"
+  },
+  {
+    userId: "sonhanje",
+    userPw: "123123123a@",
+    userPhoneNumber: "010-0123-9999",
+    address: "포항 어딘가",
+    favoritPlayer: "최우진",
+    selectedJob: "학생(초/중/고)",
+    singleOrMarried: "Y",
+    advertisement: "Y"
   }
 ]
 

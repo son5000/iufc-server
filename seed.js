@@ -13,7 +13,7 @@ async function main() {
   await prisma.user.deleteMany();
   await prisma.post.deleteMany();
   await prisma.admin.deleteMany();
-  await prisma.player.deleteMany();
+  // await prisma.player.deleteMany();
 
 
   // user 목 데이터 삽입
@@ -34,6 +34,7 @@ async function main() {
       });
     })
   );
+
   // post 목 데이터 삽입
   await Promise.all(
     Object.values(POST).map(async (category) => {
@@ -67,18 +68,27 @@ async function main() {
   )
 }
 
+
 await Promise.all(
   PLAYERS.map(async (player) => {
-    await prisma.player.create({
-      data: {
-        type: player.type,
-        backNumber: player.backNumber,
-        name: player.name,
-        englishName: player.englishName,
-        currentTeam: player.currentTeam,
-        position: player.position,
-      },
-    });
+    try {
+      console.log("Inserting player:", player); // 디버깅: player 데이터 출력
+
+      const createdPlayer = await prisma.player.create({
+        data: {
+          type: player.type,
+          backNumber: player.backNumber || null, // backNumber가 없으면 null로 처리
+          name: player.name,
+          englishName: player.englishName || null, // englishName이 없으면 null로 처리
+          currentTeam: player.currentTeam || null, // currentTeam이 없으면 null로 처리
+          position: player.position || null, // position이 없으면 null로 처리
+        },
+      });
+
+      console.log(`Player ${createdPlayer.name} inserted successfully.`); // 성공 메시지
+    } catch (error) {
+      console.error('Error inserting player:', player.name, error); // 오류 메시지 출력
+    }
   })
 );
 

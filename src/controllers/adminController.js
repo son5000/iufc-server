@@ -74,13 +74,13 @@ export const adminLogout = (req, res) => {
   
   export const userUnique = async (req, res) => {
     try {
-      const { playerId } = req.body; 
-      if (!playerId) {
+      const { userId } = req.body; 
+      if (!userId) {
         return res.status(400).json({ message: 'User ID가 필요합니다.' });
       }
-      console.log(`조회할 유저 ID: ${playerId}`);
+      console.log(`조회할 유저 ID: ${userId}`);
       const user = await prisma.user.findUnique({
-        where: { playerId }, 
+        where: { userId }, 
       });
       if (!user) {
         return res.status(404).json({ message: '해당 유저를 찾을 수 없습니다.' });
@@ -112,7 +112,7 @@ export const adminLogout = (req, res) => {
         return res.status(400).json({ message: '선수이름이 필요합니다.' });
       }
       console.log(`조회할 선수 이름: ${name}`);
-      const player = await prisma.player.findUnique({
+      const player = await prisma.player.findFirst({
         where: { name }, 
       });
       if (!player) {
