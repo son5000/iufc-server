@@ -12,9 +12,10 @@ const PORT = process.env.PORT;
 
 // CORS 설정
 app.use(cors({
-  origin: [process.env.FRONTEND_URL, 'http://localhost:3000'], // Netlify와 로컬 개발 환경 허용
+  origin: [process.env.FRONTEND_URL, 'https://icutd.netlify.app', 'http://localhost:3000'], // Netlify와 로컬 개발 환경 허용
   methods: ['GET', 'POST', 'DELETE', 'PATCH'], // 허용할 HTTP 메서드
   credentials: true, // 쿠키 전달 허용
+  allowedHeaders: ['Content-Type', 'Authorization'], // 허용할 헤더 설정
 }));
 
 // 미들웨어 설정
