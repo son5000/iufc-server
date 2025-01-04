@@ -9,12 +9,11 @@ import dotenv from 'dotenv'
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
-const FRONTURL = process.env.FRONTEND_URL;
 
 // CORS 설정
 app.use(cors(
   {
-  origin: `${FRONTURL}`, // 프론트엔드 주소 (React 개발 서버)
+  origin: [process.env.FRONTEND_URL, 'http://localhost:3000'], // Netlify와 로컬 개발 환경 허용
   methods: ['GET', 'POST','DELETE','PATCH'], // 허용할 HTTP 메서드
   credentials: true, // 쿠키 전달 허용
 }
@@ -28,7 +27,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {  // 개발 환경에서는 false로 설정
-    secure: false, // 개발 환경에서는 false
+    secure: true, // 개발 환경에서는 false
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000,  // 쿠키의 만료 시간 (24시간)
   }  
