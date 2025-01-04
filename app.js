@@ -8,13 +8,13 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT;
-const FRONTURL = process.env.FRONTEND_URL;
+const PORT = process.env.PORT ;
+const FRONTURL = process.env.FRONTEND_URL || '*';
 
 // CORS 설정
 app.use(cors(
   {
-  origin: `${FRONTURL}`, // 프론트엔드 주소 (React 개발 서버)
+  origin: FRONTURL, // 프론트엔드 주소 (React 개발 서버)
   methods: ['GET', 'POST','DELETE','PATCH'], // 허용할 HTTP 메서드
   credentials: true, // 쿠키 전달 허용
 }
@@ -40,9 +40,15 @@ app.use((req, res, next) => {
   next(); 
 });
 
-app.get('/healthz', (req, res) => {
-  res.status(200).send('OK');
+app.get('/', (req, res) => {
+    res.send('Welcome to the Express server!');
 });
+
+app.use((req, res, next) => {
+    console.log(`[${req.method}] ${req.url}`);
+    next();
+});
+
 
 app.use('/user',userRouter);
 app.use('/post',postRouter);
@@ -52,3 +58,4 @@ app.use('/admin',adminRouter);
 app.listen(PORT,() => {
   console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
+
