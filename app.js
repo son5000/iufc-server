@@ -48,15 +48,17 @@ app.use((req, res, next) => {
   next(); 
 });
 
-app.get('/healthz', (req, res) => {
-  res.status(200).send('OK');
+app.get('/', (req, res) => {
+    res.send('Welcome to the Express server!');
 });
 
 app.use('/user', userRouter);
 app.use('/post', postRouter);
 app.use('/admin', adminRouter);
+>>>>>>> 037538f1237e6d4dd91641a4fb9fda49220a6537
 
 // 서버 실행
 app.listen(PORT, () => {
   console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
+
