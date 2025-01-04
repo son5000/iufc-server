@@ -9,14 +9,11 @@ import dotenv from 'dotenv'
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
->>>>>>> 6394511ccf18418680e33d2dd4fa486a01111224
 
 // CORS 설정
 app.use(cors(
   {
-<<<<<<< HEAD
   origin: [process.env.FRONTEND_URL, 'http://localhost:3000'], // Netlify와 로컬 개발 환경 허용
->>>>>>> 6394511ccf18418680e33d2dd4fa486a01111224
   methods: ['GET', 'POST','DELETE','PATCH'], // 허용할 HTTP 메서드
   credentials: true, // 쿠키 전달 허용
 }
