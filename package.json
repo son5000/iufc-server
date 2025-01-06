@@ -3,6 +3,7 @@
     "@prisma/client": "^6.0.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-session": "^1.18.1"
@@ -13,8 +14,8 @@
   },
   "type": "module",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "seed": "node seed.js",
     "generate": "node_modules/.bin/prisma generate"
   }
