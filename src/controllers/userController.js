@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcryptjs'
-
+import { makeToken, deleteToken } from "../../redis.js";
 const prisma = new PrismaClient();
 
 // 로그인 
@@ -13,44 +13,42 @@ export const userLogin = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: '해당 아이디는 존재하지 않습니다.' });
     }
-    
+
     const isPasswordValid = await bcrypt.compare(userPw, user.userPw);
 
     if (isPasswordValid) {
-        // 세션에 사용자 정보 저장
-        req.session.user = { userId: user.userId };  // 세션에 유저 아이디 저장
-        console.log(req.session);
-        return res.status(200).json({ userId });
+      const Token = await makeToken(userId);
+        return res.status(200).json(Token);
     } else {
         return res.status(401).json({ message: '비밀번호를 다시 확인해 주세요.' });
     }
-} catch (error) {
+  } catch (error) {
     console.error(error);
     return res.status(500).json({ message: '서버 연결에 문제가 발생했습니다.' });
-}
+  }
 };
 
 // 로그아웃 API
-export const userLogout = (req, res) => {
-  req.session.destroy(  (err) => {
-    if (err) {
-      return  res.status(500).json({ error: 'Failed to logout' });
+export const userLogout = async (req, res) => {
+  const {refreshToken} = req.body;
+  if(!refreshToken){
+    return res.status(400).json({message : '요청에 RefreshToken이 포함되지 않았습니다.'})
+  }
+  try {
+    const isDeleted = await deleteToken(refreshToken);
+    if(isDeleted){
+      return res.status(200).json({message : "로그아웃에 성공했습니다."});
+    }else{
+      return res.status(400).json({message : "RefreshToken 삭제에 실패했습니다."})
     }
-     res.status(200).json({ message: 'Logout successful' });
-  });
+    
+  } catch (error) {
+    console.log(`로그아웃 API : ${error}`)
+    return res.status(500).json({message : "서버 오류로 로그아웃 실패"})
+  }
 };
 
-//로그인 상태확인 사용자 세션 정보 확인 API
-export const userSession =  (req, res) => {
-  if (req.session.user) {
-    return  res.json({userId : req.session.user.userId});
-  } else {
-    return  res.status(401).json({ message: '로그인 상태가 아닙니다.' });
-  }
-}
-
 // 회원가입 
-
 export const userSignUp =  async (req, res) => {
     const { userId, userPw,  address, userPhoneNumber, favoritPlayer, singleOrMarried, selectedJob , advertisement } = req.body;
     try {
@@ -73,7 +71,7 @@ export const userSignUp =  async (req, res) => {
       // 비밀번호 암호화
       const hashedPassword = await bcrypt.hash(userPw, 10);  // 10은 salt rounds
   
-      // 중복이 없으면 새 유저 생성ㄴ
+      // 중복이 없으면 새 유저 생성
       const newUser = await prisma.user.create({
         data: {
           userId, 
@@ -96,15 +94,17 @@ export const userSignUp =  async (req, res) => {
   };
   
   // 중복확인 API
-
 export const userDuplicatecheck = async (req, res) => {
     const { userId } = req.query; 
+
     if (!userId) {
       return res.status(400).json({ message: '사용자 아이디가 필요합니다.' });
     }
+
     const existence = await prisma.user.findUnique({
       where: { userId },
     });
+
     if (existence) {
       return res.status(200).json({
         isAvailable: false,
@@ -117,6 +117,9 @@ export const userDuplicatecheck = async (req, res) => {
       });
     }
   };
+
+
+
   
   
   

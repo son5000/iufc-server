@@ -88,13 +88,7 @@ export const getPost = async (req, res) => {
 
 // 로그인 상태 체크 및 게시글 작성
 export const postWrite = async (req, res) => {
-  const { title, content } = req.body;
-  const author = req.session.user?.userId; // 안전하게 로그인 여부 확인
-  console.log(req.session);
-
-  if (!author) {
-    return res.status(401).json({ error: '로그인이 필요합니다.' });
-  }
+  const { title, content , author } = req.body;
   try {
     const newPost = await prisma.post.create({
       data: {
