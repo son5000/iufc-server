@@ -1,34 +1,55 @@
-# ✔ iufc backend-server
+### **프로젝트 명 : 인천유나이티드 웹 서비스**
 
-<aside>
-  
-**유형** : 개인 포트폴리오 프로젝트
+*****    Project Link    ⇒**      https://icutd.netlify.app/
 
-**기간** : 2024년 11.15 ~ 
+| **유형** | 개인 포트폴리오 프로젝트 |  |
+| --- | --- | --- |
+| **프로젝트 진행기간**  | 2024년 9월 ~ 2025년 1월 |  |
+| **참여 인원** | 1명 |  |
+| **프로젝트 기여도** | 100% |  |
+| **주요 사용기술** | React , Node.js , AWS , Express , PostgreSQL , Redis , Prisma  |  |
 
-**인원** : 총 1 명
+### 프로젝트 간단 요약
 
-**프로젝트 기여도** : 100%
+React를 활용해 사용자 인터페이스를 동적으로 구성한 웹 어플리케이션입니다.
 
-**프로젝트 간단 요약** :학습에온 지식들을 종합적으로 활용하여 백엔드서버 구축 AWS 를 통한 배포 및
+로그인 상태 관리에 Redux, JWT 를 사용했으며, 
 
-    **프론트엔드 개발자와 백엔드 개발자의 상관 관계를 이해하고자 합니다.**
+‘RESTFUL API’를 통해 백엔드 서버와 비동기 통신을 하여 실시간 데이터 처리를 했습니다.
 
-**주요 사용기술** :  Node.js , Express , Express-session , Express-Router , Rest API , PostgeSQL , Prisma 
-              / dev : node-mon , rest-client
+mediaqurey를 사용하여 pc , mobile , tablet 환경에서 반응하게 만들었습니다.
 
-**프로젝트 목표 및 학습 목표**
-- db의 이해
-- AWS 이해
-- CORS 에러등 front server와 상호작용의 이해
+백엔드 서버는 Node.js 환경에서 Express를 기반으로 만들었습니다.
 
-**User 와 Post 크게 두가지의 주제를 가지고 front와의 소통을 공부하며 프로젝트를**
+![캡처](https://github.com/user-attachments/assets/29d513c8-3058-4c07-a524-92dd65a04a5e)
 
-**진행하고 있습니다.**
+## **구체적 내용**
+    
+### 백엔드
 
-</aside>
+- 백엔드 서버에서는 ‘postgreSQL’ 과 ‘Redis’ 두개의 DB를 사용하고 있습니다.
+    
+    두가지를 사용하게 된 계기는 JWT를 사용했기 때문입니다. 보안의 강도를 올리고 추가적으로
+    
+    로컬 스토리지의 값을 이용해 기능을 구현함에 있어 ‘accessToken’만이 아닌 ‘refreshToken’을 
+    
+    같이 사용했기 때문에 ‘refreshToken’을 저장하기 위한 휘발성의 특징과 빠르게 데이터를 처리할 수 있는 인메모리 저장소 ‘Redis’가 필요했습니다. 로그인시에 클라이언트에게 토큰을 생성해 넘겨주며, 동시에 ‘refreshToken’은 ‘Redis’ 특정 시간동안 저장이 됩니다. 
+    
+    이는 클라이언트 측에서 ‘accessToken’ 이 만료되었을 때 ‘refreshToken’을 활용해 새로운 토큰을 요청하기 때문에 특정 토큰 값을 기억하기 위함입니다.
+    
 
-![prismaStudioimg](https://github.com/user-attachments/assets/e15bc652-2248-4e1d-ac7c-2fe33af09f82)
-
-
-
+- 프로젝트에서 가장 신경을 많이 쓴 부분은 ‘보안’입니다.
+    
+    프론트 서버는 netlify라는 서비스를 이용하여 https 환경으로 배포했습니다. 
+    
+    백엔드 서버는 AWS의 EC2모델을 사용하여 배포 과정을 진행했으며, ubuntu 환경에 nginx 를 
+    
+    설치하여 ‘Let’s encript’ 서비스를 통해 SSL 인증서를 발급받아 https환경으로 바꿔주었습니다.
+    
+    이 과정에서 ‘가비아’서비스에서 도메인을 구입하여 ‘DNS’ 설정에 적용했습니다.
+    
+    또한 리버스 프록시를 사용하여  API를 직접 처리하지않고 중계 역할을 맡게 해 ‘proxy-path’ 로 
+    
+    EC2의 로컬환경의 다른포트를 통해 백엔드 서버에게  요청을 전달하고 전달받는 
+    
+    구조를 만들었습니다.
