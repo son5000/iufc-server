@@ -3,6 +3,50 @@ import bcrypt from 'bcryptjs'
 import { makeToken, deleteToken } from "../../redis.js";
 const prisma = new PrismaClient();
 
+// 카카오 access_token 발급
+export const kakaoLogin = async (req,res) => {
+  console.log(req.body);
+  const   code   = req.body.ACCESS_KEY;
+  if(!code){
+    console.log('액세스 키가 없습니다.')
+    return res.status(400).json({message : 'ACCESS_KEY가 필요합니다.'});
+  } 
+
+  const data = {
+    grant_type : 'authorization_code',
+    client_id :  '458b4fe6ffff263f6868c1ce53e45011',
+    code,
+  }
+
+  const queryString = Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+
+  try {
+    const getKakaoToken = await fetch(`https://kauth.kakao.com/oauth/token` , {
+      method : 'POST',
+      headers : {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+      },
+      body : queryString
+    }
+    )
+
+    const Token = await getKakaoToken.json();
+
+    if(getKakaoToken.ok){
+      console.log(Token);
+    }else{
+      console.error('카카오 API 요청 실패 : ', Token);
+    }
+
+  } catch(error){
+    console.log(error);
+  }
+
+}
+
+
 // 로그인 
 export const userLogin = async (req, res) => {
   const { userId, userPw } = req.body;
