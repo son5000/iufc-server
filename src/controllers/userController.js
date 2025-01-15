@@ -5,8 +5,8 @@ const prisma = new PrismaClient();
 
 // 카카오 access_token 발급
 export const kakaoLogin = async (req,res) => {
-  console.log(req.body);
-  const   code   = req.body.ACCESS_KEY;
+  
+  const code = req.body.ACCESS_KEY;
   if(!code){
     console.log('액세스 키가 없습니다.')
     return res.status(400).json({message : 'ACCESS_KEY가 필요합니다.'});
@@ -31,13 +31,16 @@ export const kakaoLogin = async (req,res) => {
       body : queryString
     }
     )
-
-    const Token = await getKakaoToken.json();
+    
+    const token = await getKakaoToken.json();
 
     if(getKakaoToken.ok){
-      console.log(Token);
+      return res.status(200).send({
+        accessToken : token.access_token,
+        refreshToken : token.refresh_token,
+      })
     }else{
-      console.error('카카오 API 요청 실패 : ', Token);
+      return res.status(400).send({message : '카카오 API 요청 실패'})
     }
 
   } catch(error){
@@ -46,8 +49,35 @@ export const kakaoLogin = async (req,res) => {
 
 }
 
+// 카카오 유저 정보 불러오기
 
-// 로그인 
+export const kakaoUserInfo = async (req, res) => {
+  const accessToken = req.body.accessToken;
+
+  if(!accessToken){
+    return  res.status(400).json({message : 'accessToken을 전달받지 못했습니다.'});
+  }
+
+  try {
+    const getData = await fetch("https://kapi.kakao.com/v2/user/me",{
+      headers : {
+        "Authorization" : `Bearer ${accessToken}`
+      }
+    })
+    const userInfo = await getData.json();
+    const userId = userInfo.kakao_account.profile.nickname
+
+    if(getData.ok){
+      const Token = await makeToken(userId);
+      return res.status(200).json({...Token, userId });
+    }
+  } catch (error) {
+    res.status(500).send({error})
+  }
+}
+
+
+// 일반 로그인 
 export const userLogin = async (req, res) => {
   const { userId, userPw } = req.body;
   try {

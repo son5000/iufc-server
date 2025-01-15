@@ -22,8 +22,8 @@ redisClient.on('error', (err) => {
 redisClient.connect();
 
 const SECRET_KEY = process.env.JWT_SECRET;
-const ACCESS_EXPIRATION = '1h';  // Access Token 만료 시간
-const REFRESH_EXPIRATION = 60*60*24*7;  // Refresh Token 만료 시간
+const ACCESS_EXPIRATION = 6 * 3600;  // Access Token 만료 시간 6시간
+const REFRESH_EXPIRATION = 1440 * 3600;  // Refresh Token 만료 시간 2달
 
 const makeAccessToken = (userId) => {
   return jwt.sign({ userId }, SECRET_KEY, { expiresIn: ACCESS_EXPIRATION });

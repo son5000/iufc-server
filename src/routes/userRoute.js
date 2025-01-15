@@ -1,12 +1,14 @@
 import express from 'express'
-import { userLogin, userLogout, userSignUp, userDuplicatecheck , kakaoLogin } from '../controllers/userController.js';
+import { userLogin, userLogout, userSignUp, userDuplicatecheck , kakaoLogin, kakaoUserInfo } from '../controllers/userController.js';
 import { userAccess, userRefresh } from '../../redis.js';
  const router = express.Router()
 
 
 
 // 카카오 로그인
-router.post('/loginkakao' , kakaoLogin );
+router.post('/kakaoLogin' , kakaoLogin );
+// 카카오 유저 정보 불러오기
+router.post('/kakaoUserInfo',kakaoUserInfo);
 // user login 라우터
 router.post('/login' , userLogin );
 // user logout 라우터
